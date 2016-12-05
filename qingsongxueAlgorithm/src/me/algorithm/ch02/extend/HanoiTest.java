@@ -24,6 +24,5 @@ public class HanoiTest {
     }
     public static void main(String[] args){
         hanoi(3,'A','B','C');
-//        System.out.println("--->");
     }
 }
