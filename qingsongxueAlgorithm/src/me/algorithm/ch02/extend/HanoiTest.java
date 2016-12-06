@@ -5,14 +5,18 @@ package me.algorithm.ch02.extend;
  */
 public class HanoiTest {
     public static void hanoi(int n,char A,char B,char C){
+        System.out.println(n);
         if (n == 1) {
             move(A,C);
+            System.out.println("end");
             return;
         }
         //先把A上的n-1个圆盘移到B上
         hanoi(n - 1,A,C,B);
+        System.out.println("-------");
         //把A上最后一个圆盘移到C上
         move(A,C);
+        System.out.println("*******");
         //接下来递归,把B上的n-1个圆盘移到C上
         hanoi(n - 1,B,A,C);
     }
