@@ -1,0 +1,99 @@
+package me.algorithm.ch02;
+
+/**
+ * Created by Administrator on 2016/12/8.
+ */
+public class Link {
+    private Node first;
+    private Node last;
+    private int size;
+    public Link(){
+    }
+    public void addLast(int data){
+        if(this.size == 0){
+            first = new Node();
+            first.setData(data);
+            last = first;
+        }else {
+            Node node = new Node();
+            node.setData(data);
+            last.setNext(node);
+            last = node;
+        }
+        this.size++;
+    }
+    public void addFirst(int data){
+        if(this.size == 0){
+            first = new Node();
+            first.setData(data);
+            last = first;
+        }else{
+            Node node = new Node();
+            node.setData(data);
+            node.setNext(first);
+            first = node;
+        }
+        this.size++;
+    }
+
+    /**
+     * 在index下标之后插入
+     * @param data
+     * @param index
+     */
+    public void add(int data,int index){
+        if(this.size > index){
+            if(index == 0){
+                //this.addFirst(data);
+                Node node = new Node();
+                node.setData(data);
+                node.setNext(first.getNext());
+                first.setNext(node);
+                this.size++;
+            }else if(index + 1 == size){
+                this.addLast(data);
+            }else{
+                Node tmp = this.get(index);
+                Node node = new Node();
+                node.setData(data);
+                node.setNext(tmp.getNext());
+                tmp.setNext(node);
+                this.size++;
+            }
+        }else{
+            throw new IndexOutOfBoundsException("链表没那么长");
+        }
+    }
+    public Node get(int index){
+        Node tmp = this.first;
+        if(index + 1 < this.size) {
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.getNext();
+            }
+        }else{
+            tmp = null;
+        }
+        return tmp;
+    }
+    public int size(){
+        return  this.size;
+    }
+
+    public void printAll(){
+        Node node = first;
+        while (node != null){
+            System.out.println(node.getData());
+            node = node.getNext();
+        }
+    }
+    public static void main(String[] args){
+        Link link = new Link();
+        link.addLast(4);
+        link.addLast(8);
+        link.addFirst(6);
+        link.addFirst(3);
+//        link.add(88,2);
+        link.printAll();
+        System.out.println(link.size());
+    }
+}
